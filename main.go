@@ -4,8 +4,6 @@ import (
 	"database/sql"
 	"fmt"
 	"net/http"
-
-	_ "github.com/go-sql-driver/mysql"
 )
 
 type User struct {
@@ -41,6 +39,23 @@ func main() {
 	if err != nil {
 		panic(err.Error())
 	}
+
+	stmtInsert, err := db.Prepare("INSERT INTO users(name) VALUES(?)")
+	if err != nil {
+		panic(err.Error())
+	}
+	defer stmtInsert.Close()
+
+	//Exec()に入る言葉を保存する
+	result, err := stmtInsert.Exec("進次郎")
+	if err != nil {
+		panic(err.Error())
+	}
+	lastInsertID, err := result.LastInsertId()
+	if err != nil {
+		panic(err.Error())
+	}
+	fmt.Println(lastInsertID)
 
 }
 
