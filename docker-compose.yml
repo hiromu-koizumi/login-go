@@ -16,7 +16,7 @@ services:
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci --skip-character-set-client-handshake
     volumes:
       # DBデータの永続化
-      - "db-data:/var/lib/mysql"
+      - "./docker/mysql/db-data:/var/lib/mysql"
       # 初期設定を読み込む
       - "./docker/mysql/my.conf:/etc/mysql/my.conf"
       # MySQL起動時にDBを作成する
