@@ -32,7 +32,7 @@ services:
      - "8080:8080"
    volumes:
      - .:/go/src/sample_docker_compose
-   command: go run main.go
+   command: go run docker/golang/main.go
 #  client:
 #    build:
 #      context: .
