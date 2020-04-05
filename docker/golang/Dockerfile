@@ -1,10 +1,9 @@
 # 使用するGolangのイメージを指定する
-FROM golang:1.8
+FROM golang:1.14
 
 # 必要なパッケージなどなどをインストールする
-RUN apt-get update -qq && \
-    apt-get install -y mysql-client vim
-    
+RUN go get -u github.com/go-sql-driver/mysql
+  
 # ワーキングディレクトリを指定する
 WORKDIR /go/src/sample_docker_compose
 
