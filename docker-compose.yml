@@ -29,19 +29,19 @@ services:
      dockerfile: ./docker/golang/Dockerfile
    container_name: sample_docker_compose
    ports:
-     - "8080:8080"
+     - "8888:8888"
    volumes:
      - .:/go/src/sample_docker_compose
    command: go run docker/golang/main.go
-#  client:
-#    build:
-#      context: .
-#      dockerfile: ./docker/client/Dockerfile
-#    ports:
-#      - 8080:8080
-#    volumes:
-#      - ./docker/client:/app
-#    command: yarn serve
+ client:
+   build:
+     context: .
+     dockerfile: ./docker/client/Dockerfile
+   ports:
+     - 8080:8080
+   volumes:
+     - ./docker/client:/app
+   command: yarn serve
 volumes:
  db-data:
    driver: local

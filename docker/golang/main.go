@@ -15,7 +15,12 @@ type User struct {
 
 func main() {
 	http.HandleFunc("/", handler)
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":8888", nil)
+}
+
+
+
+func handler(w http.ResponseWriter, r *http.Request) {
 	db, err := sql.Open("mysql", "root:password@tcp(mysql)/sample_docker_compose")
 	if err != nil {
 		panic(err.Error())
@@ -58,9 +63,8 @@ func main() {
 		panic(err.Error())
 	}
 	fmt.Println(lastInsertID)
-
 }
 
-func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello, from Docker container!")
-}
+// func handler(w http.ResponseWriter, r *http.Request) {
+// 	fmt.Fprintf(w, "Hello, from Docker container!")
+// }
